@@ -1,8 +1,12 @@
-import mysql from "mysql2/promise";
+import { createPool } from "mysql2/promise";
 
-export const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "library",
-  database: "",
-});
+export const connection = async () => {
+  const connect = createPool({
+    host: "127.0.0.1",
+    user: "root",
+    password: "",
+    database: "library",
+    connectionLimit: 10,
+  });
+  return connect;
+};
