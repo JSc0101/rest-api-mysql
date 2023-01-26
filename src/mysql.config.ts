@@ -3,4 +3,5 @@ export default {
   user: "sebastian",
   password: "]C).*kyJpV[y22r",
   database: "library",
+  connectionLimit: 10
 };
