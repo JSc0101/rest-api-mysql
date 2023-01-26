@@ -1,12 +1,9 @@
 import { createPool } from "mysql2/promise";
+import config from "./mysql.config";
 
-export const connection = async () => {
-  const connect = createPool({
-    host: "127.0.0.1",
-    user: "root",
-    password: "",
-    database: "library",
-    connectionLimit: 10,
-  });
-  return connect;
+export const conecct = async () => {
+  const connection = createPool(config);
+  const data = await connection.query(`SELECT * FROM books`);
+  console.log(data)
+  return "connection succesfully";
 };
