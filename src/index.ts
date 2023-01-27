@@ -11,4 +11,3 @@ app.use(express.urlencoded({ extended: false }));
 app.use(router);
 
 app.listen(app.get("port"));
-console.log(`On port ${3000}`);

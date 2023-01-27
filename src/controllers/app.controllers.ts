@@ -45,3 +45,23 @@ export const deleteBooks = async (
 
   return res.json({ message: "Delete books !" });
 };
+
+export const updateBooks = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const books: books = req.body;
+  const id = req.params.id;
+  const conn = await conecct();
+  await conn.query(`UPDATE books set ? WHERE id = ?`, [books, id]);
+
+  return res.json({
+    message: "update books",
+    data: {
+      books: {
+        title: books.title,
+        descriptin: books.description,
+      },
+    },
+  });
+};
