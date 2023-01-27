@@ -23,3 +23,13 @@ export const saveBooks = async (req: Request, res: Response) => {
     },
   });
 };
+
+export const userById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const id = req.params.id;
+  const conn = await conecct();
+  const [books] = await conn.query(`SELECT * FROM books WHERE id = ?`, [id]);
+  return res.json(books);
+};
