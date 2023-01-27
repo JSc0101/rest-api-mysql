@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { conecct } from "../db";
 import { books } from "../interfaces/books";
+
 export const getBooks = async (
   req: Request,
   res: Response
@@ -32,4 +33,15 @@ export const userById = async (
   const conn = await conecct();
   const [books] = await conn.query(`SELECT * FROM books WHERE id = ?`, [id]);
   return res.json(books);
+};
+
+export const deleteBooks = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const id = req.params.id;
+  const conn = await conecct();
+  await conn.query(`DELETE FROM books WHERE id = ?`, [id]);
+
+  return res.json({ message: "Delete books !" });
 };
